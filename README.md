@@ -1,7 +1,24 @@
 # ✦ Orion-Deck
 
-**Orion-Deck** is a terminal-based (TUI) client for the **Orion decentralized chat network**.  
-It provides a secure, encrypted, and ephemeral chat experience with a rich terminal UI.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Client](https://img.shields.io/badge/Client-TUI-cyan)
+![Encryption](https://img.shields.io/badge/Encryption-RSA%20%2B%20Fernet-purple)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Architecture](https://img.shields.io/badge/Architecture-Decentralized-orange)
+
+---
+
+**Orion-Deck** is a **terminal-based (TUI) client** for the Orion decentralized chat system.  
+It connects to Orion-Core hubs and Orion-Net rooms to provide a **secure, encrypted, and ephemeral chat experience**.
+
+> ✦ Orion — decentralized · encrypted · ephemeral
+
+---
+
+## 🏢 Organization
+
+Developed under:  
+👉 https://github.com/Crystal-Studio-Labs
 
 ---
 
@@ -9,20 +26,21 @@ It provides a secure, encrypted, and ephemeral chat experience with a rich termi
 
 - 🔐 **End-to-End Encryption**
   - RSA handshake for secure key exchange
-  - Fernet symmetric encryption for messages
+  - Fernet encryption for all messages
 
 - 💬 **Real-Time Chat**
-  - Encrypted messaging between users
-  - Structured events (join, leave, rename, system, MOTD)
+  - Encrypted messaging
+  - Structured events (join, leave, system, MOTD)
 
 - 🖥️ **Rich Terminal UI**
-  - Built with `rich`
-  - Panels, tables, colored logs, and live updates
+  - Built using `rich`
+  - Panels, tables, and styled output
+  - Live chat formatting with timestamps
 
-- 🧠 **Smart Room Handling**
-  - Join rooms via Room ID
+- 🧠 **Room Interaction**
+  - Join via Room ID
   - View room info and metadata
-  - Supports public, unlisted, and private (locked) rooms
+  - Supports public and private rooms
 
 - 🕓 **Ephemeral Messaging**
   - Messages are not stored permanently
@@ -35,30 +53,24 @@ It provides a secure, encrypted, and ephemeral chat experience with a rich termi
 
 ---
 
-## 📦 Installation
+## 🚀 Usage (Local Only)
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/your-username/orion-deck.git
-cd orion-deck
-```
+Orion-Deck is a **client application** — no hosting required.
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
+### Run the client
 
-Or manually:
 ```bash
-pip install websockets cryptography rich
+python orion-deck.py
 ```
 
 ---
 
-## 🚀 Usage
+## 📦 Installation
 
-### Run the client
 ```bash
+git clone https://github.com/Crystal-Studio-Labs/orion-deck
+cd orion-deck
+pip install websockets cryptography rich
 python orion-deck.py
 ```
 
@@ -66,7 +78,7 @@ python orion-deck.py
 
 ## ⚙️ Configuration
 
-You can set the hub endpoint using an environment variable:
+Set hub endpoint using environment variable:
 
 ```bash
 export HUB_URL=wss://orion-core.onrender.com
@@ -81,6 +93,8 @@ wss://orion-core.onrender.com
 
 ## ⌨️ Commands
 
+### Hub Commands
+
 | Command        | Description                     |
 |----------------|---------------------------------|
 | `/join [id]`   | Join a room by Room ID          |
@@ -91,34 +105,32 @@ wss://orion-core.onrender.com
 
 ---
 
-## 🏠 Room Commands
-
-Inside a room:
+### Room Commands
 
 | Command     | Description                |
 |------------|----------------------------|
 | `/leave`   | Exit the room              |
-| `/help`    | Show available commands    |
+| `/help`    | Show commands              |
 | `/who`     | List users                 |
-| `/time`    | Show server time           |
-| `/uptime`  | Show room uptime           |
-| `/motd`    | Show message of the day    |
-| `/nick`    | Change your name           |
+| `/time`    | Server time                |
+| `/uptime`  | Room uptime                |
+| `/motd`    | Message of the day         |
+| `/nick`    | Change nickname            |
 
 ---
 
 ## 🔐 Security Model
 
-1. **Handshake**
-   - Client generates RSA keypair
-   - Server sends encrypted session key
+### 1. Handshake
+- Client generates RSA keypair
+- Server returns encrypted session key
 
-2. **Session Encryption**
-   - Fernet key used for all communication
+### 2. Session Encryption
+- All communication uses Fernet encryption
 
-3. **Authentication**
-   - Passwords encrypted before sending
-   - Never transmitted in plaintext
+### 3. Authentication
+- Passwords encrypted before sending
+- Never transmitted in plaintext
 
 ---
 
@@ -147,8 +159,8 @@ Inside a room:
 
 ```
         ┌───────────────┐
-        │  Orion Hub    │
-        │ (Room Index)  │
+        │ Orion-Core    │
+        │   (Hub)       │
         └──────┬────────┘
                │
         WebSocket (/ws)
@@ -161,8 +173,8 @@ Inside a room:
         WebSocket (Room)
                │
      ┌─────────▼─────────┐
-     │   Chat Rooms      │
-     │ (Encrypted P2P)   │
+     │   Orion-Net       │
+     │  (Room Server)    │
      └───────────────────┘
 ```
 
@@ -172,23 +184,17 @@ Inside a room:
 
 - Messages are **ephemeral**
 - No permanent storage
-- If a room goes offline → **all history is lost**
-- This is **by design**
+- If a room goes offline → history is lost
+- This is **intentional design**
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Python 3
-- `websockets`
-- `cryptography`
-- `rich`
-
----
-
-## 📄 License
-
-MIT License
+- Python
+- websockets
+- cryptography
+- rich
 
 ---
 
@@ -199,13 +205,6 @@ MIT License
 
 ---
 
-## 💡 Future Ideas
+## 📄 License
 
-- File sharing
-- Voice channels
-- GUI client
-- Persistent optional rooms
-
----
-
-> ✦ Orion — decentralized · encrypted · ephemeral
+MIT License
